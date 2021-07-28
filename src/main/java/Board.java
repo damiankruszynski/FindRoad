@@ -20,6 +20,17 @@ public class Board {
        initializeBorad();
     }
 
+    public Board(int[][] initializeBorad){
+        this.sizeX = initializeBorad.length;
+        this.sizeY = initializeBorad[0].length;
+        this.logicBoard = new LogicBoard(sizeX, sizeY);
+        this.tableBoard = new int[sizeX][sizeY];
+        this.tableRoad = new String[sizeX][sizeY];
+        this.moveStack = new Stack<>();
+        initializeBorad(initializeBorad);
+    }
+
+
     public boolean possibleRouteDown(int x0, int y0, int x1, int y1){
         Point currentPoint = new Point(x0,y0);
         Point endPoint = new Point(x1,y1);
@@ -127,6 +138,15 @@ public class Board {
                 int r = random.nextInt(2);
                 tableBoard[x][y] =r;
                 tableRoad[x][y] = Integer.toString(r);
+            }
+        }
+
+    }
+    private void initializeBorad(int[][] initializeBorad){
+        for(int x=0;x<sizeX;x++){
+            for (int y=0;y<sizeY;y++){
+                tableBoard[x][y] =initializeBorad[x][y];
+                tableRoad[x][y] = Integer.toString(initializeBorad[x][y]);
             }
         }
 
